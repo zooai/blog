@@ -59,10 +59,10 @@ export default function HomePage() {
       <section className="px-6 pt-16 pb-10 border-b border-border/50">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground mb-3">
-            Hanzo Blog
+            Zoo Blog
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-            AI research, infrastructure, models, and more from the Hanzo team.
+            Decentralized AI research, open science, and the future of intelligence from Zoo Labs Foundation.
           </p>
         </div>
       </section>
