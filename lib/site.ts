@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Hanzo Blog",
-  url: "https://blog.hanzo.ai",
+  name: "Zoo Blog",
+  url: "https://blog.zoo.ngo",
   description:
-    "AI research, infrastructure, models, and more from Hanzo AI.",
+    "Decentralized AI research, open science, and the future of intelligence from Zoo Labs Foundation.",
 };
 
 export type SiteConfig = typeof siteConfig;

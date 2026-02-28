@@ -3,20 +3,19 @@ import { siteConfig } from "@/lib/site";
 
 export const metadataKeywords = [
     "Blog",
-    "Hanzo AI",
-    "Hanzo Blog",
-    "AI Research",
-    "AI Infrastructure",
-    "AI Models",
-    "Zen Models",
-    "Machine Learning",
-    "LLM",
+    "Zoo Labs Foundation",
+    "Zoo Blog",
+    "Decentralized AI",
+    "DeAI Research",
+    "DeSci",
+    "Decentralized Science",
+    "Open AI Research",
+    "ZIPs Governance",
+    "PoAI",
+    "DSO",
     "Foundation Models",
-    "Blockchain",
-    "Lux Network",
-    "MCP",
-    "Model Context Protocol",
-    "Agent Framework",
+    "Open Source AI",
+    "AI Research",
 ]
 
 export const metadata: Metadata = {
@@ -25,11 +24,11 @@ export const metadata: Metadata = {
     keywords: metadataKeywords,
     authors: [
         {
-            name: "Hanzo AI",
-            url: "https://hanzo.ai",
+            name: "Zoo Labs Foundation",
+            url: "https://zoo.ngo",
         },
     ],
-    creator: "Hanzo AI",
+    creator: "Zoo Labs Foundation",
     openGraph: {
         type: "website",
         locale: "en_US",
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: siteConfig.name,
         description: siteConfig.description,
-        creator: "@hanzoai",
+        creator: "@zoolabsfdn",
     },
     robots: {
         index: true,

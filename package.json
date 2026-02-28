@@ -1,8 +1,8 @@
 {
-  "name": "@hanzo/blog",
+  "name": "@zoo/blog",
   "version": "0.1.0",
   "private": true,
-  "description": "Hanzo AI Blog — AI research, infrastructure, models, and more",
+  "description": "Zoo Labs Foundation Research Blog — Decentralized AI, DeSci, and open research",
   "scripts": {
     "dev": "fumadocs-mdx && next dev --turbopack",
     "build": "fumadocs-mdx && next build",
