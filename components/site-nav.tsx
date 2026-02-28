@@ -12,18 +12,10 @@ export function SiteNav() {
           <span className="text-muted-foreground text-sm">/ blog</span>
         </a>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
-          <a
-            href="https://zoo.ngo"
-            className="hover:text-foreground transition-colors"
-          >
-            zoo.ngo
-          </a>
-          <a
-            href="https://zips.zoo.ngo"
-            className="hover:text-foreground transition-colors hidden sm:block"
-          >
-            ZIPs
-          </a>
+          <a href="https://zoo.ngo" className="hover:text-foreground transition-colors">zoo.ngo</a>
+          <a href="https://zips.zoo.ngo" className="hover:text-foreground transition-colors hidden sm:block">ZIPs</a>
+          <a href="https://hanzo.blog" className="hover:text-foreground transition-colors hidden sm:block">hanzo</a>
+          <a href="https://zenlm.org/blog" className="hover:text-foreground transition-colors hidden sm:block">zen</a>
           <a
             href="https://discord.gg/zooai"
             target="_blank"
