@@ -1,7 +1,7 @@
 ---
 title: "Drop-Upcycling: Building 13B-Quality MoE Models at 1/4 the Cost"
 date: "2026-02-28"
-author: "Hanzo AI"
+author: "Zach Kelling"
 tags: ["ai", "moe", "zen", "drop-upcycling", "zen4", "training", "architecture", "q-galore", "gt-qlora"]
 description: "How Drop-Upcycling transforms a dense model into a high-quality MoE at a fraction of the training cost — and how we apply it to Zen MoDE for efficient expert specialization."
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Continual Learning Without Catastrophic Forgetting: A Production Guide"
 date: "2026-02-28"
-author: "Hanzo AI"
+author: "Zach Kelling"
 tags: ["ai", "continual-learning", "fine-tuning", "lora", "zen", "research", "oplora", "sure", "opcm"]
 description: "How we use OPLoRA, SuRe, OPCM, and Youtu-Agent to keep Zen models learning without degrading what they already know. A production guide to the 2025-2026 continual learning stack."
 ---
