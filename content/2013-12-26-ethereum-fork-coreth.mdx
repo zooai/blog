@@ -36,7 +36,7 @@ The architecture we eventually built into Lux:
 
 **Sub-second finality**
 - PoW and PoS have inherent latency tied to probabilistic finality
-- Snow consensus family achieves deterministic finality in under a second
+- Wave consensus family achieves deterministic finality in under a second
 - This matters enormously for commerce — you need to know a payment is final
 
 **EVM compatibility**
@@ -52,28 +52,28 @@ When building Lux's C-Chain (the smart contract chain), we wanted this compatibi
 
 - **Same EVM**: All Solidity contracts work unchanged
 - **Same RPC**: Existing tools just work
-- **Different consensus**: Snow* family for sub-second finality
+- **Different consensus**: Wave family for sub-second finality
 - **Multi-chain**: C-Chain interoperates with X-Chain (assets) and P-Chain (validators)
 
 ```go
 // The Lux VM interface — pluggable execution behind consensus
 type VM interface {
-    Initialize(ctx *snow.Context, ...) error
-    BuildBlock() (snowman.Block, error)
-    ParseBlock([]byte) (snowman.Block, error)
+    Initialize(ctx *lux.Context, ...) error
+    BuildBlock() (luxman.Block, error)
+    ParseBlock([]byte) (luxman.Block, error)
     // ... Lux-specific methods
 }
 ```
 
 ## Lux Consensus
 
-The Snow* consensus family is probabilistic-but-fast. Each node repeatedly samples a small random subset of peers. When sufficient agreement is detected, the network reaches consensus in milliseconds.
+The Wave consensus family is probabilistic-but-fast. Each node repeatedly samples a small random subset of peers. When sufficient agreement is detected, the network reaches consensus in milliseconds.
 
 This enables:
 
 - **1-2 second finality** for payment confirmation
 - **4,500+ TPS** on the C-Chain
-- **Subnet architecture** for infinite scalability
+- **Chain architecture** for infinite scalability
 - **Deterministic finality** — once accepted, it's final
 
 ## Commerce and Crypto
