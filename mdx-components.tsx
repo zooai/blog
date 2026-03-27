@@ -48,7 +48,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AccordionItem,
     AccordionTrigger,
     Author,
-    h1: createHeading(1),
+    h1: () => null, // Title rendered by page template — suppress MDX duplicate
     h2: createHeading(2),
     h3: createHeading(3),
     h4: createHeading(4),
