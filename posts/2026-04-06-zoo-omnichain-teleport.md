@@ -1,0 +1,119 @@
+---
+title: "Zoo Omnichain: Conservation DeFi Across 270 Chains"
+description: "How Zoo extends Lux Teleport for conservation finance — native programs on Solana, TON, and Cosmos, yield-bearing tokens with 20% conservation split, and ShariaFilter for Islamic conservation bonds."
+date: 2026-04-06
+authors: [zoo]
+tags: [omnichain, conservation, defi, teleport, zip-0802]
+---
+
+# Zoo Omnichain: Conservation DeFi Across 270 Chains
+
+Conservation finance does not work if it only exists on one chain. The organizations, donors, and communities that fund conservation are spread across every ecosystem — Ethereum DeFi users, Solana payment rails, Cosmos IBC chains, TON's 900 million Telegram users. Meeting them where they are is not a feature. It is a requirement.
+
+Zoo Omnichain extends Lux Teleport to bring conservation DeFi to 270+ chains, with native programs on Solana, TON, and Cosmos that feel native to each ecosystem while settling into Zoo's unified conservation ledger on the Lux Zoo subnet.
+
+This architecture is specified in [ZIP-0802](https://zips.zoo.ngo/zip-0802).
+
+## The Conservation Finance Problem
+
+Traditional conservation funding flows through a narrow pipeline: government grants, NGO donations, and corporate ESG budgets. These sources total roughly $130 billion annually. The estimated funding gap for global biodiversity conservation is $700 billion per year.
+
+DeFi can close part of this gap — but only if conservation instruments are accessible from wherever capital already lives. A yield farmer on Ethereum who wants conservation exposure should not need to bridge to a chain they have never used, learn a new wallet, and navigate unfamiliar interfaces. The conservation instrument should come to them.
+
+## Architecture
+
+Zoo Omnichain has three layers:
+
+**Settlement Layer (Lux Zoo Subnet).** All conservation accounting happens on the Zoo subnet. Carbon credit retirements, impact bond maturities, conservation fund distributions — the canonical state lives here. The Zoo subnet provides finality in under 2 seconds and settlement costs under $0.001.
+
+**Transport Layer (Lux Teleport).** Cross-chain messaging uses Lux Teleport — Warp V2 for intra-Lux messages (validator-signed, trustless) and MPC threshold signing (CGGMP21/FROST, 3-of-5) for external chains. Messages are verified cryptographically on the destination chain. No relayer trust assumptions.
+
+**Application Layer (Native Programs).** Each external ecosystem has native contracts or programs that expose conservation instruments in the ecosystem's native idiom:
+
+- **Solana:** Anchor programs with SPL token integration. Conservation tokens are native SPL tokens. Yield is distributed via Solana's built-in token extensions.
+- **TON:** FunC/Tact smart contracts. Conservation instruments are Jettons. Integration with TON Connect for Telegram wallet access — this reaches 900M potential users through a wallet they already have.
+- **Cosmos:** CosmWasm contracts deployed on Osmosis, Celestia, and Cosmos Hub. IBC-native transfers to and from the Zoo settlement layer.
+- **EVM:** Solidity contracts on Ethereum, Arbitrum, Optimism, Base, Polygon, BSC, and 50+ other EVM chains.
+
+## Yield-Bearing Conservation Tokens
+
+Zoo's conservation tokens are yield-bearing wrappers around base assets. When a user deposits USDC into a Zoo conservation pool, they receive zooUSDC — a token that accrues yield from the underlying DeFi deployment while automatically directing 20% of that yield to conservation programs.
+
+The split is hardcoded in the smart contract, not configurable:
+
+```
+Deposit: 1000 USDC → 1000 zooUSDC
+Underlying: deployed to Lux lending/LP protocols
+Yield: ~4.2% APY on underlying
+Distribution:
+  - 80% to zooUSDC holder (3.36% effective APY)
+  - 20% to Zoo Conservation Treasury (0.84% effective APY)
+```
+
+The Conservation Treasury is a multisig on the Zoo subnet controlled by the Zoo Foundation board. Disbursements require a DAO vote via the ZIP governance process. The treasury's balance and all disbursements are visible on-chain at [explore-zoo.lux.network](https://explore-zoo.lux.network).
+
+This is not charity. The user earns a competitive yield — 3.36% is within range of major lending protocols — while automatically funding conservation. The 20% conservation split is the cost of the conservation impact attestation that comes with zooUSDC.
+
+## Conservation Impact Attestation
+
+Every zooToken carries an on-chain attestation of conservation impact. The attestation is updated quarterly by the Zoo Foundation evaluation committee and includes:
+
+- **Carbon offset equivalent:** Tonnes of CO2 equivalent offset by the conservation programs funded by this pool's yield
+- **Biodiversity impact:** Species protection metrics from funded programs (habitat area protected, population counts, ranger patrol coverage)
+- **Program allocation:** Which specific conservation programs received funding from this pool's yield, with amounts
+- **Verification:** Third-party verification from recognized conservation auditors (Gold Standard, Verra, or Plan Vivo)
+
+The attestation is stored on IPFS with the content hash recorded on the Zoo subnet. Anyone can verify that the impact claims correspond to actual conservation programs with audited outcomes.
+
+## ShariaFilter: Islamic Conservation Bonds
+
+Islamic finance manages over $4 trillion in assets globally, with strong demand for ethical investment vehicles. Conservation bonds are a natural fit — but they must comply with Sharia principles: no interest (riba), no excessive uncertainty (gharar), no prohibited activities (haram).
+
+ShariaFilter is a smart contract module specified in ZIP-0802 that enables Sharia-compliant conservation instruments:
+
+**Sukuk al-Istisna (Project Finance).** Conservation projects are funded through manufacturing contracts — the investor funds a specific conservation project (reforestation, habitat restoration) and receives ownership of the project's measurable outcomes. Returns come from the project's productive capacity (carbon credits, ecosystem services), not from interest.
+
+**Mudarabah (Profit Sharing).** The conservation fund operates as a Mudarabah partnership — Zoo Foundation provides management expertise, the investor provides capital, and profits from conservation outcomes are shared according to a pre-agreed ratio. Losses are borne by the capital provider only, which is the standard Mudarabah structure.
+
+**Filtering Logic.** ShariaFilter validates conservation instruments against a configurable ruleset:
+
+- No interest-bearing components (yield comes from profit-sharing or asset ownership, not lending)
+- No investments in prohibited sectors (screening applied to any DeFi protocols used for yield generation)
+- Full transparency of fund composition (required by Sharia governance)
+- Quarterly Sharia audit by a recognized Sharia board
+
+The ShariaFilter module is optional — conservation pools can operate with or without it. When enabled, the pool's zooTokens carry an additional Sharia compliance attestation alongside the conservation impact attestation.
+
+## Cross-Chain Flow
+
+A complete cross-chain conservation deposit from Solana:
+
+1. User deposits USDC into the Zoo conservation program on Solana
+2. Solana Anchor program locks USDC and emits a Teleport message
+3. MPC committee (FROST, Ed25519) signs the deposit attestation
+4. Teleport relayer delivers attestation to Zoo subnet
+5. Zoo subnet mints zooUSDC and records the conservation commitment
+6. Underlying USDC is deployed to Lux lending protocols
+7. Yield accrues: 80% to user's zooUSDC, 20% to Conservation Treasury
+8. User can redeem on any supported chain — not just the origin chain
+
+Step 8 is important: a user who deposited from Solana can withdraw to Ethereum, or to TON, or to any other supported chain. The conservation commitment is chain-agnostic.
+
+## Current Status
+
+- **Chains live:** Lux (all subnets), Ethereum, Arbitrum, Optimism, Base, Solana, Cosmos Hub, Osmosis
+- **Coming Q2 2026:** TON, Polygon, BSC, Celestia, Aptos, Sui
+- **Total conservation TVL:** $12.4M across all pools
+- **Conservation Treasury disbursed:** $180K to 7 conservation programs across 4 continents
+- **ShariaFilter:** Deployed on Zoo subnet, Ethereum, and Solana. Sharia audit by AAOIFI-certified board pending.
+
+## Links
+
+- **ZIP-0802:** [zips.zoo.ngo/zip-0802](https://zips.zoo.ngo/zip-0802) — Omnichain Conservation DeFi specification
+- **Conservation pools:** [zoo.ngo/conservation](https://zoo.ngo/conservation)
+- **Treasury:** [explore-zoo.lux.network](https://explore-zoo.lux.network) — on-chain conservation treasury
+- **Bridge:** [bridge.lux.network](https://bridge.lux.network) — Lux Teleport bridge interface
+
+---
+
+*Zoo Labs Foundation is a 501(c)(3) non-profit. Learn more at [zoo.ngo](https://zoo.ngo). Governance at [zips.zoo.ngo](https://zips.zoo.ngo).*
