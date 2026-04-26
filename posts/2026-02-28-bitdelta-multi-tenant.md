@@ -1,7 +1,7 @@
 ---
 title: "BitDelta: Serving 14 Zen Models from One GPU Cluster"
 date: "2026-02-28"
-author: "Zach Kelling"
+authors: ["Antje Worring", "Zach Kelling"]
 tags: ["ai", "serving", "infrastructure", "bitdelta", "zen", "gpu", "multi-tenant", "monosoup", "k-merge"]
 description: "How BitDelta's 1-bit delta compression lets us serve 14 Zen model variants from shared GPU infrastructure — the math, the architecture, and the tradeoffs."
 ---

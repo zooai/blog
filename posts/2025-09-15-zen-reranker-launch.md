@@ -1,7 +1,7 @@
 ---
 title: "Zen Reranker: Neural Reranking at 30x Compression"
 date: "2025-09-15"
-author: "Zach Kelling"
+authors: ["Antje Worring", "Zach Kelling"]
 tags: ["ai", "models", "zen", "reranking", "rag", "search", "embeddings", "launch"]
 description: "Zen Reranker delivers 7680-dimensional neural reranking with a 31.87x BitDelta compression ratio, designed for RAG pipelines and integrated with Hanzo and Zoo decentralized search networks."
 ---
